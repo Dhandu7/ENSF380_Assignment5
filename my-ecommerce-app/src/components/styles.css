@@ -1,0 +1,38 @@
+.company-name {
+    position:absolute;
+    top: 0px;
+    right: 3px;
+    margin-left: 5px; 
+}
+
+.links {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    justify-content: space-between;
+    margin-top: 20px
+}
+
+.links a {
+    padding: 0 5px;
+}
+
+.logo, .about-us, .customer-reviews, .footer {
+    margin-left: 5px;
+}
+
+.cart {
+    position: absolute;
+    right: 110px;
+    margin-left: 5px; 
+}
+
+.product-item, .cart-item {
+    line-height: 0.5em;
+}
+
+
+
+
+  
