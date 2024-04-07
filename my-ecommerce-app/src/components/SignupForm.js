@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+
 
 const SignupForm = ({ switchForm }) => { 
-  const navigate = useNavigate()
+
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -28,7 +28,29 @@ const SignupForm = ({ switchForm }) => {
       alert('Password and confirm password do not match');
       return;
     }
-    navigate("/login")
+    try {
+      const response = await fetch('/signup', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username, password, email })
+      });
+      const data = await response.json();
+      if (response.ok) {
+          // Reset form fields after successful signup
+          setUsername('');
+          setPassword('');
+          setConfirmPassword('');
+          setEmail('');
+          alert('Signup successful! Please login to continue.');
+      } else {
+          // Display error message if signup failed
+          alert(data.error || 'Signup failed');
+      }
+  } catch (error) {
+      console.error('Error:', error);
+  }
   };
 
   return (

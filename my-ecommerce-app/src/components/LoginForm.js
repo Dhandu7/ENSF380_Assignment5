@@ -11,6 +11,25 @@ const LoginForm = ({ switchForm }) => {
             alert('Please fill in both username and password fields.');
             return;
         }
+        try {
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+            const data = await response.json();
+            if (response.ok) {
+                // Redirect user to product page upon successful login
+                window.location.href = '/products';
+            } else {
+                // Display error message if login failed
+                alert(data.error || 'Invalid username or password');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
 
     return (
