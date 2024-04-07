@@ -1,41 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './Header';
+import LoginForm from './LoginForm';
+import SignupForm from './SignupForm';
 import Footer from './Footer';
-import { useHistory } from 'react-router-dom';
 
 const Loginpage = () => {
-  const history = useHistory(); 
+  const [isLoginFormVisible, setIsLoginFormVisible] = useState(true);
 
-  const switchToSignup = () => {
-      history.push("./Signupage"); 
-  }
-    return (
-      <div>
-        <Header />
-        <div className="login-form">
-          <h1>Login</h1>
-          <form>
-            <div className="form-group">
-              <label htmlFor="username">Username:</label>
-              <input type="text" id="username" name="username" placeholder="Enter your username" />
-            </div>
+  const toggleForm = () => {
+    setIsLoginFormVisible(!isLoginFormVisible);
+  };
 
-            <div className="form-group">
-              <label htmlFor="password">Password:</label>
-              <input type="password" id="password" name="password" placeholder="Enter your password" />
-            </div>
-            <div className='form-group'>
-              <button type="submit">Login</button>
-            </div>
-            <button onClick={switchToSignup}>Switch to Signup</button>
-          </form>
+  return (
+    <div>
+      <Header />
+      {/* Display LoginForm if isLoginFormVisible is true, otherwise display SignupForm */}
+      {isLoginFormVisible ? (
+        <LoginForm switchForm={toggleForm} />
+      ) : (
+        <SignupForm switchForm={toggleForm} />
+      )}
+      <Footer />
+    </div>
+  );
+}
 
-          
-          </div>
-        <Footer />
-      </div>
-      
-    );
-  }
-  
-  export default Loginpage;
+export default Loginpage;

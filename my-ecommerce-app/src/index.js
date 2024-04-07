@@ -2,10 +2,10 @@
 =========================================================
 Name : index.js
 Assignment : Assignment #4
-Author(s) : Hooriya Khan, Aaryan Dhand
-Submission : March 24, 2024
+Author(s) : Kareem Hussein, Aaryan Dhand
+Submission : April 8, 2024
 Description : An ecommerce website.
-Comments: UCID: 30151054 (Hooriya Khan), 30171280 (Aaryan Dhand)
+Comments:
 =========================================================
 -->
 */
