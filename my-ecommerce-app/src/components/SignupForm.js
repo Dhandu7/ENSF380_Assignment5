@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const SignupForm = ({ switchForm }) => { 
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -27,8 +28,7 @@ const SignupForm = ({ switchForm }) => {
       alert('Password and confirm password do not match');
       return;
     }
-
-    <Navigate to="./LoginForm" replace />;
+    navigate("/login")
   };
 
   return (

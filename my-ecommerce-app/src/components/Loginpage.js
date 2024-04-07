@@ -14,11 +14,10 @@ const Loginpage = () => {
   return (
     <div>
       <Header />
-      {/* Display LoginForm if isLoginFormVisible is true, otherwise display SignupForm */}
       {isLoginFormVisible ? (
-        <LoginForm switchForm={toggleForm} />
+        <LoginForm switchForm={toggleForm}/>
       ) : (
-        <SignupForm switchForm={toggleForm} />
+        <SignupForm switchForm={toggleForm}/>
       )}
       <Footer />
     </div>
