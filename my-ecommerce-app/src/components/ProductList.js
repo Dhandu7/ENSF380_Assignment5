@@ -1,30 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ProductItem from './ProductItem';
+import products from '../data/products';
 
-const ProductList = ({ addToCart }) => {
-    const [products, setProducts] = useState([]);
-
-    useEffect(() => {
-        // Fetch products data from the API endpoint
-        fetch('/api/products')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to fetch products');
-                }
-                return response.json();
-            })
-            .then(data => {
-                setProducts(data);
-            })
-            .catch(error => {
-                console.error('Error fetching products:', error);
-            });
-    }, []);
-
+const ProductList = ({ onAddToCart }) => {
     return (
         <div className="product-list">
             {products.map(product => (
-                <ProductItem key={product.id} product={product} addToCart={addToCart} />
+                <ProductItem
+                    key={product.id}
+                    id={product.id}
+                    name={product.name}
+                    price={product.price}
+                    image={product.image}
+                    description={product.description}
+                    onAddToCart={onAddToCart}
+                />
             ))}
         </div>
     );

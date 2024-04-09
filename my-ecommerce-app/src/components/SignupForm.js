@@ -16,20 +16,20 @@ const SignupForm = ({ switchForm }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!username || !password || !confirmPassword || !email) {
       alert('Please fill in all fields');
       return;
     }
-
+  
     if (password !== confirmPassword) {
       alert('Password and confirm password do not match');
       return;
     }
     try {
-      const response = await fetch('/signup', {
+      const response = await fetch('http://127.0.0.1:5000/register', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
@@ -39,19 +39,22 @@ const SignupForm = ({ switchForm }) => {
       const data = await response.json();
       if (response.ok) {
           // Reset form fields after successful signup
-          setUsername('');
-          setPassword('');
-          setConfirmPassword('');
-          setEmail('');
+          setFormData({
+            username: '',
+            password: '',
+            confirmPassword: '',
+            email: ''
+          });
           alert('Signup successful! Please login to continue.');
       } else {
           // Display error message if signup failed
           alert(data.error || 'Signup failed');
       }
-  } catch (error) {
+    } catch (error) {
       console.error('Error:', error);
-  }
+    }
   };
+  
 
   return (
     <div className="login-form">
@@ -78,7 +81,7 @@ const SignupForm = ({ switchForm }) => {
         </div>
 
         <div className='form-group'>
-          <button type="submit" onClick={handleSubmit}>Submit</button>
+          <button onClick={handleSubmit}>Submit</button>
         </div>
         <button onClick={switchForm}>Switch to Login</button>
       </form>

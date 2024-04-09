@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request, redirect, url_for
 from flask_cors import CORS
 
-app = Flask(_name_)
+app = Flask(__name__)
 CORS(app)
 
 users = []
@@ -79,7 +79,7 @@ products = [
 ]
 
 
-@app.route('/api/register', methods=['POST'])
+@app.route('/register', methods=['POST'])
 def register_user():
     data = request.get_json()
     username = data.get('username')
@@ -93,7 +93,7 @@ def register_user():
     return jsonify({'message': 'User registered successfully'}), 201
 
 
-@app.route('/api/login', methods=['POST'])
+@app.route('/login', methods=['POST'])
 def login_user():
     data = request.get_json()
     username = data.get('username')
@@ -107,10 +107,10 @@ def login_user():
         return jsonify({'error': 'Incorrect username or password'}), 401
 
 
-@app.route('/api/products', methods=['GET'])
+@app.route('/products', methods=['GET'])
 def get_products():
     return jsonify(products), 200
 
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     app.run(debug=True)
