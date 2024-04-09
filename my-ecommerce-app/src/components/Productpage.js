@@ -34,7 +34,7 @@ const Productpage = () => {
             <Header />
             <table>
                 <tr>
-                    <td><ProductList addToCart={addToCart} /></td>
+                    <td><ProductList onAddToCart={addToCart} /></td>
                     <td style={{verticalAlign: 'top'}}><Cart cart={cart} removeFromCart={removeFromCart} /></td>
                 </tr>
             </table>
